@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './Product.css';
 
 
 export default class Product extends Component {
@@ -7,19 +8,8 @@ export default class Product extends Component {
     // }
     render(){
         return(
-            <div>Product
-                <input 
-                placeholder='product' 
-                type='text' onChange={e => this.props.addProducts(e.target.value)}
-                />
-                <input
-                 placeholder='price'
-                 />
-                <input 
-                placeholder='image url'
-                />
-                <button>Cancel</button>
-                <button>Add to Inventory</button>
+            <div className='productCont'>Product
+             
             </div>
         )
     }

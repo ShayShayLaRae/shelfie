@@ -20,3 +20,23 @@
 .App-link {
   color: #09d3ac;
 }
+body{
+  height: 100vh;
+  width: 100vw;
+}
+
+#root{
+  height: 100vh;
+}
+
+.App{
+  height: 100vh;
+
+}
+
+.content{
+  height: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
