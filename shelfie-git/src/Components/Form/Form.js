@@ -3,13 +3,6 @@ import './Form.css'
 
 
 export default class Form extends Component {
-
-    // state= {
-    //     product_name: '',
-    //     price: 0,
-    //     image_url: ''
-    // };
-
     constructor() {
         super();
         this.state = {
@@ -23,9 +16,18 @@ export default class Form extends Component {
         this.setState({ product_name: '', price: '', image_url: '' })
     }
 
-    // addToInventory() {
-    //     this.setState({})
-    // }
+    productChangeHandler(event) {
+        this.setState({product_name: event.target.value})
+    }
+
+    priceChangeHandler(event) {
+        this.setState({price: event.target.value})
+    }
+
+    imageChangeHandler(event) {
+        this.setState({image_url: event.target.value})
+    }
+  
 
     render() {
         const { product_name, price, image_url } = this.state;
@@ -35,33 +37,19 @@ export default class Form extends Component {
                     value={product_name}
                     placeholder='product'
                     type='text'
-                    onChange={event => {
-                        this.setState({
-                            product_name: event.target.value  //variable I want to update : the new value
-                        })
-
-                    }
-                    }
+                    onChange={e => this.productChangeHandler(e)}
                 />
                 <input
                     value={price}
                     placeholder='price'
                     type='text'
-                    onChange={event => {
-                        this.setState({
-                            price: event.target.value
-                        })
-                    }}
+                    onChange={e => this.priceChangeHandler(e)}
                 />
                 <input
                     value={image_url}
                     placeholder='image url'
                     type='text'
-                    onChange={event => {
-                        this.setState({
-                            image_url: event.target.value
-                        })
-                    }}
+                    onChange={e => this.imageChangeHandler(e)}
                 />
                 <button onClick={event => {
                     this.clearInputs()
