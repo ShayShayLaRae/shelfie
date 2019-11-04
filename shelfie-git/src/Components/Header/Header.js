@@ -9,7 +9,9 @@ export default class Header extends Component {
     render(){
         return(
             <div className='headerCont'>
-                
+                <div className='logo'>
+                    SHELFIE
+                </div>
             </div>
         )
     }

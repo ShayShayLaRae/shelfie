@@ -7,9 +7,11 @@ export default class Product extends Component {
     //     super()
     // }
     render(){
+        const {product} = this.props;
+        const {product_name, price, image_url} = product;
         return(
-            <div className='productCont'>Product
-             
+            <div key={product_name}className='productCont'>
+             {product_name}
             </div>
         )
     }
