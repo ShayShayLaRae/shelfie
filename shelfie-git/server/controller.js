@@ -37,6 +37,13 @@ module.exports= {
             console.log(err);
             
         })
+    },
+    editProduct (req, rem) {
+        const db = req.app.get ('db');
+        const {product_name, price} = req.body;
+        const {id} = req.params;
+        db.edit_product([product_name, +id, +price]).then(shelfie =>
+            res.status(200).send(shelfie))
     }
 
 }

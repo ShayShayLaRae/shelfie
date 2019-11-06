@@ -14,18 +14,25 @@ export default class Dashboard extends Component {
     }
 
     componentDidMount() {
-        this.getInventory();
-    }
-
-    getInventory() {
-       let dashboardThis = this;
-        //All HTTP requests provide a Promise which must be resolved using "then"
-        axios.get('http://localhost:4000/api/inventory') 
-        .then(response => { //"then" has its own scope! Using "this" will refer to "then", not "Dashboard"
-            dashboardThis.setState({productList: response.data})
-            console.log('state', dashboardThis.state);
+        // this.getInventory();
+        axios
+        .get('http://localhouse:4000/api/inventory')
+        .then(results => {
+            this.setState({
+                productList: results.data
+            });
         });
     }
+
+    // getInventory() {
+    //    let dashboardThis = this;
+    //     //All HTTP requests provide a Promise which must be resolved using "then"
+    //     axios.get('http://localhost:4000/api/inventory') 
+    //     .then(response => { //"then" has its own scope! Using "this" will refer to "then", not "Dashboard"
+    //         dashboardThis.setState({productList: response.data})
+    //         console.log('state', dashboardThis.state);
+    //     });
+    // }
 ß
     render(){
         return(
