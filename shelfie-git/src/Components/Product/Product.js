@@ -9,9 +9,13 @@ export default class Product extends Component {
     render(){
         const {product} = this.props;
         const {product_name, price, image_url} = product;
+        console.log(product);
+        
         return(
-            <div key={product_name}className='productCont'>
-             {product_name}
+            <div className='productCont'>
+             <img src={image_url} alt='product' className='image' />
+             <div className='name'>{product_name}</div>
+             <div className='price'>{price}</div>
             </div>
         )
     }

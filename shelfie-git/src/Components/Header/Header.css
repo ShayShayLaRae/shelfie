@@ -2,11 +2,12 @@
     background: #AB2A19;
     height: 10%;
     width: 100vw;
+   
 }
 
 .logo{
     color: white;
     font-size: 20pt;
     display: flex;
-    /* align-items: center; */
+    padding: 20px;
 }

@@ -16,15 +16,16 @@ export default class Dashboard extends Component {
     componentDidMount() {
         // this.getInventory();
         axios
-        .get('http://localhouse:4000/api/inventory')
+        .get('http://localhost:4000/api/inventory')
         .then(results => {
+
             this.setState({
                 productList: results.data
             });
         });
     }
 
-    // getInventory() {
+    // getInventory=() => {
     //    let dashboardThis = this;
     //     //All HTTP requests provide a Promise which must be resolved using "then"
     //     axios.get('http://localhost:4000/api/inventory') 
@@ -33,7 +34,7 @@ export default class Dashboard extends Component {
     //         console.log('state', dashboardThis.state);
     //     });
     // }
-ß
+
     render(){
         return(
             <div className='dashCont'>

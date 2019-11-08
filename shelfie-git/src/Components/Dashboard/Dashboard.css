@@ -1,8 +1,9 @@
 .dashCont{
-    background: #D34735;
-    height: 50%;
-    width: 20%;
-    display: flex;
+    /* background: #D34735; */
+    height: 75%;
+    width: 45%;
     flex-direction: column;
     justify-content: space-around;
+    overflow: scroll;
+
 }

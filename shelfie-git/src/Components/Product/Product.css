@@ -1,0 +1,13 @@
+.productCont{
+    display: flex;
+    background: #D34735;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.image{
+    height: 65%;
+    width: 40%;
+    
+}
