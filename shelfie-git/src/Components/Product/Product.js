@@ -7,15 +7,20 @@ export default class Product extends Component {
     //     super()
     // }
     render(){
-        const {product} = this.props;
-        const {product_name, price, image_url} = product;
-        console.log(product);
+        const {product, deleteProduct, updateSelectedonProd} = this.props;
+        const {id, product_name, price, image_url} = product;
         
         return(
             <div className='productCont'>
              <img src={image_url} alt='product' className='image' />
              <div className='name'>{product_name}</div>
              <div className='price'>{price}</div>
+             <button onClick={() => updateSelectedonProd(product)}>
+                Edit
+             </button>
+             <button onClick={() => deleteProduct(id)}>
+                Delete
+             </button>
             </div>
         )
     }

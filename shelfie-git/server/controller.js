@@ -14,12 +14,9 @@ module.exports= {
 
     addProduct(req, res) {
         const db = req.app.get('db')
-        const {product_name, price, image_url} = req.body
-        db.add_product({
-            product_name: product_name,
-            price: price,
-            image_url: image_url
-        }).then(result => {
+        // const {product_name, price, image_url} = req.body
+        db.add_product(req.body)
+        .then(result => {
             res.status(200).send(result)
         }).catch(err => {
             console.log(err);
@@ -40,9 +37,8 @@ module.exports= {
     },
     editProduct (req, rem) {
         const db = req.app.get ('db');
-        const {product_name, price} = req.body;
         const {id} = req.params;
-        db.edit_product([product_name, +id, +price]).then(shelfie =>
+        db.edit_product(req.body).then(shelfie =>
             res.status(200).send(shelfie))
     }
 

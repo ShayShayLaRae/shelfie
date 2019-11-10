@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Form.css'
+import axios from 'axios';
 
 
 export default class Form extends Component {
@@ -8,11 +9,38 @@ export default class Form extends Component {
         this.state = {
             product_name: '',
             price: '',
-            image_url: ''
+            image_url: '',
+            updateHasExecuted: false,
+            isEditingMode: false
         };
     }
 
-    clearInputs() {
+    componentDidUpdate() {
+        const {selectedProduct} = this.props;
+        const {isEditingMode, updateHasExecuted} = this.state;
+        console.log('ello! selectedProduct', selectedProduct);
+        let keyCount = Object.keys(selectedProduct).length;
+        if(keyCount > 0 && !updateHasExecuted) {
+            this.setState({
+                product_name: selectedProduct.product_name,
+                price: selectedProduct.price,
+                image_url: selectedProduct.image_url,
+                isEditingMode: true,
+                updateHasExecuted: true
+            });
+        }
+    }
+
+    addProduct(){
+
+        axios.post('http://localhost:4000/api/product', {
+            product_name: this.state.product_name,
+            price: this.state.price,
+            image_url: this.state.image_url
+        })
+        this.clearInputs();
+    }
+    clearInputs = () => {
         this.setState({ product_name: '', price: '', image_url: '' })
     }
 
@@ -27,10 +55,20 @@ export default class Form extends Component {
     imageChangeHandler(event) {
         this.setState({image_url: event.target.value})
     }
+
+    cancelBtnHandler = () => {
+        this.props.updateSelectedProduct({});
+        this.setState({product_name: '', price: '', image_url: '', isEditingMode: false});
+    }
   
 
     render() {
-        const { product_name, price, image_url } = this.state;
+        // const product_name = this.state.product_name;
+        // const price = this.state.price;
+        // const image_url = this.state.image_url;
+
+        const { product_name, price, image_url, isEditingMode } = this.state;
+
         return (
             <div className='formCont'>Form
                    <input
@@ -51,15 +89,15 @@ export default class Form extends Component {
                     type='text'
                     onChange={e => this.imageChangeHandler(e)}
                 />
-                <button onClick={event => {
-                    this.clearInputs()
-                    console.log('state', this.state);
-                }}>
+                <button onClick={e => this.cancelBtnHandler()}>
                     Cancel
                 </button>
-                <button>
+                {!isEditingMode && <button onClick={() => this.addProduct()}>
                     Add to Inventory
-                </button>
+                </button>}
+                {isEditingMode && <button>
+                    Save Changes
+                </button>}
             </div>
         )
     }

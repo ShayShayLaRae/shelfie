@@ -1,9 +1,13 @@
 UPDATE shelfie
-SET product_name = $1
-WHERE id = $2;
+SET product_name = ${product_name}
+WHERE id = ${id};
 
 UPDATE shelfie
-SET price = $1
-WHERE id = $2;
+SET price = ${price}
+WHERE id = ${id};
+
+UPDATE shelfie
+SET image_url = ${image_url}
+WHERE id = ${id};
 
 SELECT * FROM shelfie;

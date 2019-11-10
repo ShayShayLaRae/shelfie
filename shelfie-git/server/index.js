@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.post('/api/inventory', ctrl.addProduct)
+app.post('/api/product', ctrl.addProduct)
 app.get('/api/inventory', ctrl.getProducts)
 // app.put('/api/inventory/:id', ctrl.put)
 app.delete('/api/inventory/:id', ctrl.deleteProduct)

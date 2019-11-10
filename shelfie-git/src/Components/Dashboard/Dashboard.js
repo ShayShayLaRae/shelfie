@@ -14,7 +14,10 @@ export default class Dashboard extends Component {
     }
 
     componentDidMount() {
-        // this.getInventory();
+        this.getProductList()
+    }
+
+    getProductList=() => {
         axios
         .get('http://localhost:4000/api/inventory')
         .then(results => {
@@ -25,21 +28,26 @@ export default class Dashboard extends Component {
         });
     }
 
-    // getInventory=() => {
-    //    let dashboardThis = this;
-    //     //All HTTP requests provide a Promise which must be resolved using "then"
-    //     axios.get('http://localhost:4000/api/inventory') 
-    //     .then(response => { //"then" has its own scope! Using "this" will refer to "then", not "Dashboard"
-    //         dashboardThis.setState({productList: response.data})
-    //         console.log('state', dashboardThis.state);
-    //     });
-    // }
+    deleteProduct=(id) => {
+        let parentThis= this
+        axios.delete(`http://localhost:4000/api/inventory/${id}`)
+        .then(result => {
+            parentThis.getProductList()
+        })
+    }
+
 
     render(){
+        const {updateSelectedonDash} = this.props;
         return(
             <div className='dashCont'>
                 {this.state.productList.map(p => 
-                <Product key={p.id} product={p} />
+                <Product 
+                key={p.id} 
+                product={p} 
+                deleteProduct={this.deleteProduct}
+                updateSelectedonProd={updateSelectedonDash}
+                />
                 )}
                
             </div>
