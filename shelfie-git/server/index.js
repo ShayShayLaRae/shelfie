@@ -11,7 +11,8 @@ app.use(cors());
 
 app.post('/api/product', ctrl.addProduct)
 app.get('/api/inventory', ctrl.getProducts)
-// app.put('/api/inventory/:id', ctrl.put)
+app.get('/api/inventory/:id', ctrl.get1)
+app.put('/api/product/:id', ctrl.editProduct)
 app.delete('/api/inventory/:id', ctrl.deleteProduct)
 
 massive(CONNECTION_STRING).then(databaseConnection => {

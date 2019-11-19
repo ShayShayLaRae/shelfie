@@ -12,9 +12,20 @@ module.exports= {
         })
     },
 
+    get1(req, res) {
+        const db = req.app.get('db')
+        db.get_1()
+        .then(result => {
+            res.status(200).send(result)
+        }).catch(err => {
+            console.log(err);
+        })
+    },
+    
+
     addProduct(req, res) {
         const db = req.app.get('db')
-        // const {product_name, price, image_url} = req.body
+        const {product_name, price, image_url} = req.body
         db.add_product(req.body)
         .then(result => {
             res.status(200).send(result)
@@ -35,10 +46,11 @@ module.exports= {
             
         })
     },
-    editProduct (req, rem) {
+    editProduct (req, res) {
+        const {product_name, price, image_url} = req.body
         const db = req.app.get ('db');
         const {id} = req.params;
-        db.edit_product(req.body).then(shelfie =>
+        db.edit_product({id, product_name, price, image_url}).then(shelfie =>
             res.status(200).send(shelfie))
     }
 
